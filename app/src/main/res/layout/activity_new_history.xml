@@ -5,22 +5,104 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.NewHistoryActivity">
-
-    <Button
-        android:id="@+id/done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="done" />
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    tools:context=".ui.edit.EditHistoryActivity">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.kgp.myaccount.ui.common.RoundConstraintLayout
+            android:id="@+id/modeExpense"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            app:borderColor="@color/blue"
+            app:borderWidth="3dp"
+            app:clippedBackgroundColor="@color/blue_light"
+            app:cornerRadius="10dp">
+
+            <TextView
+                android:id="@+id/expenseText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지출"
+                android:textColor="@color/blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.kgp.myaccount.ui.common.RoundConstraintLayout>
+
+        <com.kgp.myaccount.ui.common.RoundConstraintLayout
+            android:id="@+id/modeIncome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            app:borderColor="@color/grey_dark"
+            app:borderWidth="3dp"
+            app:clippedBackgroundColor="@color/grey"
+            app:cornerRadius="10dp">
+
+            <TextView
+                android:id="@+id/incomeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="소득"
+                android:textColor="@color/grey_dark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.kgp.myaccount.ui.common.RoundConstraintLayout>
+
+        <com.kgp.myaccount.ui.common.RoundConstraintLayout
+            android:id="@+id/modeIgnore"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+
+            app:borderColor="@color/grey_dark"
+            app:borderWidth="3dp"
+            app:clippedBackgroundColor="@color/grey"
+            app:cornerRadius="10dp">
+
+            <TextView
+                android:id="@+id/ignoreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="제외"
+                android:textColor="@color/grey_dark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.kgp.myaccount.ui.common.RoundConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="금액" />
+            android:text="금액 : "
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/moneyEdit"
@@ -36,12 +118,69 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내용" />
+            android:text="내용 : "
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/detailEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp">
+
+        <com.kgp.myaccount.ui.common.RoundConstraintLayout
+            android:id="@+id/done"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="2"
+            app:borderColor="@color/main_pink"
+            app:borderWidth="3dp"
+            app:clippedBackgroundColor="@color/main_pink"
+            app:cornerRadius="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="저장"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.kgp.myaccount.ui.common.RoundConstraintLayout>
+
+        <com.kgp.myaccount.ui.common.RoundConstraintLayout
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            app:borderColor="@color/main_pink"
+            app:borderWidth="3dp"
+            app:cornerRadius="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="취소"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.kgp.myaccount.ui.common.RoundConstraintLayout>
+
     </LinearLayout>
 
 

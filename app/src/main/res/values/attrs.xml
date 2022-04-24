@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundConstraintLayout">
+        <attr name="clippedBackgroundColor" format="color|reference"/>
+        <attr name="borderColor" format="color|reference"/>
+        <attr name="borderWidth" format="dimension"/>
+        <attr name="cornerRadius" format="dimension"/>
+    </declare-styleable>
+</resources>

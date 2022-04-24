@@ -3,18 +3,17 @@ package com.kgp.myaccount
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kgp.myaccount.databinding.ActivityMainBinding
 import com.kgp.myaccount.ui.HistoryListAdapter
 import com.kgp.myaccount.ui.HistoryViewModel
-import com.kgp.myaccount.ui.NewHistoryActivity
+import com.kgp.myaccount.ui.baseclass.BaseActivity
+import com.kgp.myaccount.ui.edit.EditHistoryActivity
 import kotlinx.coroutines.flow.collect
-import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class MainActivity : AppCompatActivity(), KoinComponent {
+class MainActivity : BaseActivity() {
     lateinit var binding: ActivityMainBinding
 
     private val historyViewModel: HistoryViewModel by inject()
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity(), KoinComponent {
         setContentView(binding.root)
 
         binding.newHistory.setOnClickListener {
-            val intent = Intent(this, NewHistoryActivity::class.java)
+            val intent = Intent(this, EditHistoryActivity::class.java)
             newHistoryLauncher.launch(intent)
         }
         initHistoryRecyclerView()
