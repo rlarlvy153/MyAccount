@@ -9,13 +9,14 @@ import java.time.LocalDateTime
 class HistoryRepository : KoinComponent {
     private val historyDao: HistoryDao by inject()
 
-    suspend fun insertHistory(money: Long, detail: String, category: Int): History {
+    suspend fun insertHistory(money: Long, detail: String, shouldIgnore: Boolean, date: LocalDateTime, category: Int): History {
         val history = History(
             0,
             moneyLong = money,
             detail = detail,
             category = category,
-            timestamp = LocalDateTime.now()
+            shouldIgnore = shouldIgnore,
+            timestamp = date
         )
         val insertedId = historyDao.insertHistory(history)
         return history.also { it.id = insertedId }

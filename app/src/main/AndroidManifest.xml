@@ -12,7 +12,7 @@
         android:theme="@style/Theme.MyAccount">
         <activity
             android:theme="@style/Theme.MyAccount"
-            android:name=".ui.edit.EditHistoryActivity"
+            android:name=".ui.edit.NewOrEditHistoryActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

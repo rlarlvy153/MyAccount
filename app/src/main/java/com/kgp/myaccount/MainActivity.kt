@@ -9,9 +9,11 @@ import com.kgp.myaccount.databinding.ActivityMainBinding
 import com.kgp.myaccount.ui.HistoryListAdapter
 import com.kgp.myaccount.ui.HistoryViewModel
 import com.kgp.myaccount.ui.baseclass.BaseActivity
-import com.kgp.myaccount.ui.edit.EditHistoryActivity
+import com.kgp.myaccount.ui.edit.HistoryMode
+import com.kgp.myaccount.ui.edit.NewOrEditHistoryActivity
 import kotlinx.coroutines.flow.collect
 import org.koin.core.component.inject
+import java.time.LocalDateTime
 
 class MainActivity : BaseActivity() {
     lateinit var binding: ActivityMainBinding
@@ -26,12 +28,12 @@ class MainActivity : BaseActivity() {
         }
 
         val extras = it.data?.extras ?: return@registerForActivityResult
-        val money = extras.getLong("money") ?: return@registerForActivityResult
-        val detail = extras.getString("detail") ?: return@registerForActivityResult
+        val money = extras.getLong(NewOrEditHistoryActivity.KEY_MONEY, 0)
+        val detail = extras.getString(NewOrEditHistoryActivity.KEY_DETAIL) ?: return@registerForActivityResult
+        val mode = extras.getSerializable(NewOrEditHistoryActivity.KEY_MODE) as? HistoryMode ?: return@registerForActivityResult
+        val dateTime = extras.getSerializable(NewOrEditHistoryActivity.KEY_DATE_TIME) as? LocalDateTime ?: return@registerForActivityResult
 
-
-        //TODO 데이터 필터링
-        historyViewModel.insert(money, detail, 1)
+        historyViewModel.insert(money, detail, mode, dateTime)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +42,7 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.newHistory.setOnClickListener {
-            val intent = Intent(this, EditHistoryActivity::class.java)
+            val intent = Intent(this, NewOrEditHistoryActivity::class.java)
             newHistoryLauncher.launch(intent)
         }
         initHistoryRecyclerView()
