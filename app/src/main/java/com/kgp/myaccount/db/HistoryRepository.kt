@@ -16,7 +16,7 @@ class HistoryRepository : KoinComponent {
             detail = detail,
             category = category,
             shouldIgnore = shouldIgnore,
-            timestamp = date
+            localDateTime = date
         )
         val insertedId = historyDao.insertHistory(history)
         return history.also { it.id = insertedId }

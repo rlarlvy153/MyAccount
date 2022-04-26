@@ -2,6 +2,7 @@ package com.kgp.myaccount
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,9 +10,10 @@ import com.kgp.myaccount.databinding.ActivityMainBinding
 import com.kgp.myaccount.ui.HistoryListAdapter
 import com.kgp.myaccount.ui.HistoryViewModel
 import com.kgp.myaccount.ui.baseclass.BaseActivity
-import com.kgp.myaccount.ui.edit.HistoryMode
-import com.kgp.myaccount.ui.edit.NewOrEditHistoryActivity
+import com.kgp.myaccount.ui.editornew.HistoryMode
+import com.kgp.myaccount.ui.editornew.NewOrEditHistoryActivity
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.core.component.inject
 import java.time.LocalDateTime
 
@@ -41,18 +43,22 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        addListener()
+
+        initHistoryRecyclerView()
+
+        observeEvents()
+    }
+
+    private fun addListener() {
         binding.newHistory.setOnClickListener {
             val intent = Intent(this, NewOrEditHistoryActivity::class.java)
             newHistoryLauncher.launch(intent)
         }
-        initHistoryRecyclerView()
-        observeEvents()
-
-
     }
 
     private fun observeEvents() {
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launch {
             historyViewModel.getAllHistories().collect {
                 historyAdapter.items = it
                 historyAdapter.notifyDataSetChanged()
@@ -62,6 +68,8 @@ class MainActivity : BaseActivity() {
 
     private fun initHistoryRecyclerView() {
         binding.historyRecyclerView.adapter = historyAdapter
-        binding.historyRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.historyRecyclerView.layoutManager = LinearLayoutManager(this).apply {
+            orientation = LinearLayoutManager.VERTICAL
+        }
     }
 }

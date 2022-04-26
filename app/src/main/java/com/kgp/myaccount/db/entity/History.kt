@@ -13,5 +13,5 @@ data class History(
     val detail: String = "",
     val category: Int = 0,
     val shouldIgnore: Boolean = false,
-    val timestamp: LocalDateTime
+    val localDateTime: LocalDateTime = LocalDateTime.now()
 )

@@ -1,4 +1,4 @@
-package com.kgp.myaccount.ui.edit
+package com.kgp.myaccount.ui.editornew
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -9,6 +9,7 @@ import androidx.core.widget.doOnTextChanged
 import com.kgp.myaccount.R
 import com.kgp.myaccount.databinding.ActivityNewHistoryBinding
 import com.kgp.myaccount.ui.baseclass.BaseActivity
+import com.kgp.myaccount.utils.DateUtil
 import org.koin.android.ext.android.inject
 import java.time.DayOfWeek
 
@@ -54,16 +55,7 @@ class NewOrEditHistoryActivity : BaseActivity() {
             val year = it.year
             val month = it.monthValue
             val day = it.dayOfMonth
-            val dayOfWeek = when (it.dayOfWeek) {
-                DayOfWeek.SUNDAY -> "일"
-                DayOfWeek.MONDAY -> "월"
-                DayOfWeek.TUESDAY -> "화"
-                DayOfWeek.WEDNESDAY -> "수"
-                DayOfWeek.THURSDAY -> "목"
-                DayOfWeek.FRIDAY -> "금"
-                DayOfWeek.SATURDAY -> "토"
-                else -> "일"
-            }
+            val dayOfWeek = DateUtil.dayOfWeekToWord(it.dayOfWeek)
             val hour = it.hour
             val minute = it.minute
 

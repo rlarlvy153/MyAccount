@@ -1,4 +1,4 @@
-package com.kgp.myaccount.ui.edit
+package com.kgp.myaccount.ui.editornew
 
 import androidx.lifecycle.MutableLiveData
 import com.kgp.myaccount.ui.baseclass.BaseViewModel

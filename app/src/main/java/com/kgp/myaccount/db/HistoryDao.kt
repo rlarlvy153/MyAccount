@@ -12,6 +12,6 @@ interface HistoryDao {
     @Insert
     suspend fun insertHistory(history: History): Long
 
-    @Query("SELECT * FROM History")
+    @Query("SELECT * FROM History ORDER BY localDateTime")
     fun getAllHistory(): Flow<List<History>>
 }
