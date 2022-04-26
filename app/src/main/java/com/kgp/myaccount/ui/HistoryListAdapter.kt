@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.kgp.myaccount.MyApp
 import com.kgp.myaccount.R
 import com.kgp.myaccount.databinding.VhDayBinding
 import com.kgp.myaccount.databinding.VhHistoryItemBinding
@@ -16,6 +17,9 @@ import com.kgp.myaccount.utils.MoneyUtil
 class HistoryListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items = listOf<HistoryBaseItem>()
+
+    private val expenseColor = ContextCompat.getColor(MyApp.appContext, R.color.blue)
+    private val incomeColor = ContextCompat.getColor(MyApp.appContext, R.color.red)
 
     inner class HistoryViewHolder(private val binding: VhHistoryItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(historyItem: HistoryItem) {
@@ -32,9 +36,9 @@ class HistoryListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 if (!historyItem.shouldIgnore) {
                     val c = if (money < 0) {
-                        ContextCompat.getColor(itemView.context, R.color.blue)
+                        expenseColor
                     } else {
-                        ContextCompat.getColor(itemView.context, R.color.red)
+                        incomeColor
                     }
                     binding.money.text = formattedMoney
                     binding.money.setTextColor(c)
@@ -59,9 +63,9 @@ class HistoryListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.net.text = moneyText
 
             val c = if (dayItem.sumOfDay < 0) {
-                ContextCompat.getColor(itemView.context, R.color.blue)
+                expenseColor
             } else {
-                ContextCompat.getColor(itemView.context, R.color.red)
+                incomeColor
             }
             binding.net.setTextColor(c)
         }

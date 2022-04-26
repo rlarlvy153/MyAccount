@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.LocalDateTime
 
+//TODO 날짜로 인덱싱 추가
 @Entity(tableName = "History")
 data class History(
     @PrimaryKey(autoGenerate = true)
